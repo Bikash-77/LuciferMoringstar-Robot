@@ -1,7 +1,12 @@
-echo "Cloning Repo, Please Wait..."
-git clone -b master https://github.com/Technical-Masters/Lucifer-Movie-Bot.git /Lucifer-Movie-Bot
+if [ -z $UPSTREAM_REPO ]
+then
+  echo "Cloning main Repository"
+  git clone https://github.com/Technical-Masters/Lucifer-Movie-Bot.git /Lucifer-Movie-Bot
+else
+  echo "Cloning Custom Repo from $UPSTREAM_REPO "
+  git clone $UPSTREAM_REPO /Lucifer-Movie-Bot
+fi
 cd /Lucifer-Movie-Bot
-echo "Installing Requirements..."
 pip3 install -U -r requirements.txt
-echo "Starting Bot, Please Wait..."
-python3 bot.py
+echo "Starting Lucifer Movie Bot...."
+python3 main.py
